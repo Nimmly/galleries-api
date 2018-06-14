@@ -18,5 +18,7 @@ Route::post('/login', 'Auth\LoginController@authenticate');
 Route::middleware('api')->get('/galleries', 'GalleriesController@index'); 
 Route::middleware('api')->post('/galleries', 'GalleriesController@store');
 Route::middleware('api')->get('/galleries/{id}', 'GalleriesController@show'); 
+Route::middleware('api')->post('/galleries/{id}/comments', 'CommentsController@store'); 
+
 
 
