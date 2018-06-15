@@ -16,9 +16,11 @@ Route::post('/register', 'Auth\RegisterController@store');
 Route::post('/login', 'Auth\LoginController@authenticate');
 
 Route::middleware('api')->get('/galleries', 'GalleriesController@index'); 
-Route::middleware('api')->post('/galleries', 'GalleriesController@store');
 Route::middleware('api')->get('/galleries/{id}', 'GalleriesController@show'); 
-Route::middleware('api')->post('/galleries/{id}/comments', 'CommentsController@store'); 
+Route::middleware('jwt')->get('{user_id}/my-galleries', 'GalleriesController@showAuthor'); 
 
+Route::middleware('jwt')->post('/galleries', 'GalleriesController@store');
+Route::middleware('jwt')->post('/galleries/{id}/comments', 'CommentsController@store');
+Route::middleware('api')->delete('/galleries/{id}', 'GalleriesController@destroy');
 
 

@@ -14,6 +14,10 @@ class GalleriesController extends Controller
     {
         return Gallery::with('images')->get();
     }
+    public function showAuthor($user_id)
+    {
+        return Gallery::where('user_id', $user_id)->get();
+    }
     public function store(Request $request, JWTAuth $auth)
     {
         $gallery = new Gallery();
@@ -44,5 +48,11 @@ class GalleriesController extends Controller
     public function show($id)
     {
         return Gallery::with('images','user')->find($id);
+    }
+    public function destroy($id)
+    {
+        $gallery = Gallery::find($id);
+        $gallery->delete();
+        return new JsonResponse(true);
     }
 }
