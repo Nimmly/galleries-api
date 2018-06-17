@@ -101,6 +101,8 @@ class RegisterController extends Controller
         $user->password = bcrypt($request->input('password'));
         
         $user->save();
+
+        $user = auth()->user();
         
         return $user;
     }
